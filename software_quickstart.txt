@@ -1,0 +1,56 @@
+Software Quick Start
+
+Installation and setup
+============================
+0. Don't connect MiiCraft 3D Printer to the PC yet.
+
+1. Unzip MiiCraftSetupV03.zip to a temporary directory, eg. c:\temp\
+
+2. Unzip your machine dependent CorrectRGB_MASK.png from XXX.zip (XXX is the serial number of the 
+   MiiCraft 3D Printer) to c:\temp\Sources\
+
+3. Install the Video-Over-USb Driver by executing c:\temp\Sources\TriggerDriver\12.01.0411.0179.exe.
+   After the program finishes, CONNECT the MiiCraft 3D Printer to the PC now. Follow the instructions to
+   complete the driver installation. 
+
+4. Windows will detect an Arduino device, navigate to c:\temp\Sources\Arduino drivers\ for drivers.
+   The driver will emulate a virtual COM port which is used to communicate to the MiiCraft 3D Printer. 
+
+5. MiiCraftSuite is based on Python 2.6 and above, but is not compatible with Python 3.x. Python 2.6 
+   and Python 2.7 are tested and recommended.
+   If you have no Python installed, Install Python by executing c:\temp \python-2.6.6.msi
+   
+6. Run c:\temp\setup_V01.py by double-click on the file, or by executing¡§python setup_V01.py¡¨ in
+   the command line mode.
+
+7. Press "Enter" during all the installation process. If some components are installed already.
+   press "n" and "then "Enter" to skip that component. 
+   
+8. Setup.py will place MiiCraftSuit in c:\MiiCraft_V05.
+
+[VERY IMPORTANT]
+9. MiiCarft uses USB external monitor to display the sliced patterns. To disply correctly, 
+   go to C:\MiiCraft and modify the value of USBDisplayStartX in MiiCraftSuite.ini. 
+
+   The value of USBDisplayStartX = (the primary monitor horizontal resolution) - 1
+
+   For example, my HP 8440p primary monitor is 1366x768, so in my ini USBDisplayStartX is set as 1365.
+   If your primary screen is 1920x1080, set USBDisplayStartX as 1919 in your MiiCraftSuite.ini.
+
+10. Because the 3D Printering would take long time to print 3D objects, cancel the 
+    sleeping and screen saver functions of Windows.
+
+11. Recommend to change the Windows Wallpaper to blank (black).
+
+3D Print a sample
+=============================
+1. Double-click c:\MiiCraft\MiiCraftPrinter_V03.py
+
+2. Menu Connect-> Auto Search and Connect to connect to the 3D Printer
+
+3. Menu File-> Open Image Index File, then browse c:\MiiCraft\sample\Hexball\Hexball.idx
+
+4. Click on "Initialize" button, the stage will move up to the HOME position.
+
+5. When the stage reaches the HOME position, click "Print" button to start printing.
+

@@ -1,0 +1,25 @@
+2012-July-16th
+
+Changes from V03 to V04
+1. [Bug Fix] MiiCraftSChecker.py
+   Change the initial directory to miicraft\output if no last stl file found
+
+2. [Bug Fix] MiiCraftSlicer.py
+   Correct the message of "  ImageMagics Converting Sliced BMP files ..." to "  ImageMagics Converting Sliced PNG files ...".
+
+3. [Bug Fix] Change the background of small_down_arrow.gif to transprent.
+
+4. [Bug Fix] MiiCraftModeler.py
+   Add "right click" message to the tips.
+
+5. [Correctiton] Rename sample\tower.stl to sample\pyramid.stl
+
+6. [Improvement] Move the installation of skeinforge to the last of the setup. 
+
+7. [Change] Remove goldberg.stl since it doesn't have support structured added.
+
+2012-Aug-9th
+
+1. [Bug Fix] MiiCraftSlicer.py 	- Correct the image size of mogrify to 768x480
+2. [Improve] MiiCraftSlicer.py 	- Sliced image numbering starts from 2000 instead 1000 before
+3. [Improve] Arduino firmware   - Use MSTimer2 library to blink LED during printing
