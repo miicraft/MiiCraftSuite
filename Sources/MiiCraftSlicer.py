@@ -357,7 +357,13 @@ def Slice():
     
     
     print 'ccc', stl_file_name[0:len(stl_file_name)-4]
-         
+
+    FileputPath = str(".\\"+stl_file_name[0:len(stl_file_name)-4]+"\\")
+    print FileputPath
+    print OutputPath
+    os.system('mkdir '+ FileputPath)
+    os.chdir(FileputPath)
+
             
     # Use Skeinforge to Slice the model to the Skeinforge SVG file
     StatusStr.set("  Slicing with Skeinforge ....")

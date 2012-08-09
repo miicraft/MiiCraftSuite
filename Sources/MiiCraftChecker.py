@@ -103,14 +103,18 @@ def read_last_stl():
         return False
                      
 def CountImages(stlfilename, OutputPath):
+
+    global FileputPath 
+    FileputPath = str(OutputPath+stlfilename[0:len(stlfilename)-4]+"\\") #for model picture folder
+ 
     try:
-        dirList = os.listdir(OutputPath)
+        dirList = os.listdir(FileputPath)
     except:
-        showinfo("Error", "Path: "+OutputPath+" doesn't exist!")
+        showinfo("Error", "Path: "+FileputPath+" doesn't exist!")
         return -1, -1
         
     if len(dirList)==0:
-        showinfo("Error", "Path: "+OutputPath+" doesn't have images!")
+        showinfo("Error", "Path: "+FileputPath+" doesn't have images!")
         return -1, -1
         
     #print len(dirList), os.getcwd()
@@ -143,8 +147,8 @@ def changeImage(slice_num):
     
     image_im_m1        = imageBlank
         
-    if (OperationValue == 1):                  
-        imageFile   = SliceImgPath+stlfilename[:-4]+str(int(slice_num))  +".png"
+    if (OperationValue == 1):      
+        imageFile   = FileputPath+stlfilename[:-4]+str(int(slice_num))  +".png"
         try:
             image_im    = Image.open(imageFile)
         except:
@@ -154,7 +158,7 @@ def changeImage(slice_num):
             return            
       
     if (OperationValue == 2):
-        imageFile   = SliceImgPath+stlfilename[:-4]+str(int(slice_num))  +".png"
+        imageFile   = FileputPath+stlfilename[:-4]+str(int(slice_num))  +".png"
         try:
             image_im    = Image.open(imageFile)
         except:
@@ -163,7 +167,7 @@ def changeImage(slice_num):
             #checkslice_ui.destroy()
             return
                 
-        imageFilem1 = SliceImgPath+stlfilename[:-4]+str(int(slice_num)-1)+".png"
+        imageFilem1 = FileputPath+stlfilename[:-4]+str(int(slice_num)-1)+".png"
         try:
             image_im_m1 = Image.open(imageFilem1)
         except:
@@ -290,7 +294,6 @@ HOMEPATH = os.environ['HOMEDRIVE']+os.environ['HOMEPATH']+"\\.miicraft\\"
 
 SliceImgPath = ReadOutputPath()
 
-
 if os.path.isfile(HOMEPATH+'laststl'):
     longfilename = read_last_stl()
     long_split = longfilename.split('\\')
@@ -306,8 +309,8 @@ if stlfilename == False:
 else:                
     #check outputs images
     
-    
     fileNum_min, fileNum_max = CountImages(stlfilename, SliceImgPath)
+    
     if fileNum_max == -1:
         print "Error"
         get_stlname_from_image()
