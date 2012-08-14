@@ -23,3 +23,7 @@ Changes from V03 to V04
 1. [Bug Fix] MiiCraftSlicer.py 	- Correct the image size of mogrify to 768x480
 2. [Improve] MiiCraftSlicer.py 	- Sliced image numbering starts from 2000 instead 1000 before
 3. [Improve] Arduino firmware   - Use MSTimer2 library to blink LED during printing
+
+2012-Aug-15th
+
+1. [Bug Fix] MiiCraftPrinter.py - "Initiate" buttom will be no response if the resin was not filled after "Fill resin" process.

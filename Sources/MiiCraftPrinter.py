@@ -4,12 +4,13 @@ It will be organized and cleaned in the future release
 '''
 
 from __future__ import absolute_import
-VER = "v0.3"
+VER = "v0.4"
 '''
  MiiCraft Printer Control Program
  v0.1    2012-May-4th  [P.K.] Initial version
  v0.2    2012-May-31th [T.W.] Improve performance
- v0.3    
+ v0.3    2012-Aug-15th [T.W.] solve fill resin funtion bug
+ v0.4
 
     Part of the MiiCraft project
     Copyright (C) 2012  Thomas Wu, Paul Kang, Young Optics
@@ -322,6 +323,7 @@ def FillResin():
         if ack == 'OK':
             StatusText.set("Resin is filled")
             root.update()
+            state = '0'
             break
 
 def RedrawResin():
@@ -610,7 +612,7 @@ def build_a_layer(layer_num):
    
 def ControlInit():
 
-    global state, root
+    global state, resin_state, root
     global PrintPause, PrintStop
 
     PrintPause = False
@@ -649,6 +651,7 @@ def ControlInit():
 
     # this is for abort processing
     state = 'M'
+    resin_state = '0'
 
     PrintPause = False
 
@@ -662,7 +665,7 @@ def ControlPrint():
     global start_num, end_num, total_num
     global PrintPause, PrintStop
     global root, imageBlank_tk
-    global state
+    global state, resin_state
 
     PrintPause = False
     PrintStop  = False
@@ -679,6 +682,7 @@ def ControlPrint():
     BtnSpeed.config(state=DISABLED)
     BtnLayer.config(state=DISABLED)
 
+    resin_state = '1'
 
     FillResin()
     if state == 'R':
@@ -688,6 +692,7 @@ def ControlPrint():
         while state == 'R':
             root.update()
 
+    BtnPrint.config(state=DISABLED)
     BtnStop.config(state=NORMAL)
         
     # Set Z-Axis Start Position
@@ -752,6 +757,7 @@ def ControlPrint():
     BtnStop.config(state=NORMAL)
     root.update()
     state = 'A'
+    resin_state = '0'
     send_a_cmd(GoHome, "Print Done! "+GoHomeMsg)
 
     if state == '0':
@@ -799,18 +805,18 @@ def ControlStop():
         
 
 def ControlIniSwitch():
-    global PrintPause, state
+    global PrintPause, state, resin_state
     if state == 'R':
         state = '0'
         Initiate_updown.set("Initiate")
         BtnInit.config(state=DISABLED)
-        return
+        if resin_state == '1':
+            return
     if PrintPause == False:
         ControlInit()
     if PrintPause == True:
         CheckModel()
-        
-        
+                
 
 
 def CheckModel():
@@ -1038,12 +1044,12 @@ SerialTimeOut    = 1
     
 global dirpathname, prefixname, extname, startname, endname
 global start_num, end_num, total_num
-global state
+global state, resin_state
 global speed_print, thick_layer
 speed_print = 0 # 0=normal, 1=slow 
 thick_layer = 0 # 0=100micro, 2=50micro
 state = '0'
-
+resin_state = '0' # 0=initial, 1=ptinting
 
 global NVPConnected, VaildIdxLoaded, PrintPause, PrintStop
 NVPConnected   = False
