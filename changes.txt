@@ -27,4 +27,4 @@ Changes from V03 to V04
 2012-Aug-15th
 
 1. [Bug Fix] MiiCraftPrinter.py - "Initiate" buttom will be no response if the resin was not filled after "Fill resin" process.
-2. [Test] for mulituser.
+2. [Test] Github for multi-user.
