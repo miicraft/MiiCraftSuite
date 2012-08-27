@@ -1,5 +1,4 @@
 2012-July-16th
-
 Changes from V03 to V04
 1. [Bug Fix] MiiCraftSChecker.py
    Change the initial directory to miicraft\output if no last stl file found
@@ -19,12 +18,13 @@ Changes from V03 to V04
 7. [Change] Remove goldberg.stl since it doesn't have support structured added.
 
 2012-Aug-9th
-
+Changes from V04 to V05
 1. [Bug Fix] MiiCraftSlicer.py 	- Correct the image size of mogrify to 768x480
 2. [Improve] MiiCraftSlicer.py 	- Sliced image numbering starts from 2000 instead 1000 before
-3. [Improve] Arduino firmware   - Use MSTimer2 library to blink LED during printing
+3. [Improve] MiiCraftPrinter.py - By Thomas Wu
 
-2012-Aug-15th
-
-1. [Bug Fix] MiiCraftPrinter.py - "Initiate" buttom will be no response if the resin was not filled after "Fill resin" process.
-2. [Test] Github for multi-user.
+2012-Aug-26th
+Changes from V05 to V06
+1. [Improve] MiiCraftSlicer.py  - Add base option
+2. [Improve] Put the sliced images in the directory with the name
+             of it's own model under output directory.
